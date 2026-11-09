@@ -32,8 +32,6 @@ The exact dependency ranges are in `package.json`.
 3. Check the Console for the setup result and warnings. After Unity finishes script compilation, rerun **シーンに追加・更新 (Auto Setup)** if the Console asks you to.
 4. Save the scene, then build the world. シーンに追加・更新 (Auto Setup) creates one world-fixed `QvInfoX_WorldState` for pen details, one small `QvInfoX_MasterTotals` for the header and progress, one Monitor, a Cyan PlayerObjectPool, and an Indicator for each detected pen.
 
-New Monitors appear 2 m in front of the first spawn at spawn height + 0.9 m; without a spawn they use (0, 0.9, 2), and existing Monitor positions are preserved on rerun.
-
 **シーンから取り除く (Remove from Scene)** uses the scene's install record and preserves `QvInkPreview_*` objects referenced by other tools such as QvPalette. Generated assets remain available to other scenes.
 
 For an existing QvInfoX scene, update the package, rerun **シーンに追加・更新 (Auto Setup)**, check the Console, then save and rebuild the scene. This migrates the Master aggregate from PlayerSlot to the single WorldState. Repeated シーンに追加・更新 (Auto Setup) preserves the selected Monitor language and Indicator tail settings.

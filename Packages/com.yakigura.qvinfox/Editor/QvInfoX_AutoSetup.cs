@@ -119,34 +119,6 @@ namespace QvInfoX.Editor
                 $"설치 완료: 인디케이터 {indicators.Count}개를 연결했습니다."));
         }
 
-        #if QVINFOX_DIAG
-        [MenuItem("Tools/Yakigura/QvInfoX/Health Check")]
-        #endif
-        public static void HealthCheckMenu()
-        {
-            var issues = CollectHealthIssues();
-            var root = FindSceneRoot(MONITOR_ROOT_NAME);
-            var manager = root != null ? root.GetComponent<QvInfoX_Manager>() : null;
-            var language = manager != null ? manager.language : 0;
-            if (issues.Count == 0)
-                Debug.Log("[QvInfoX Health Check] " + LanguageText(language,
-                    "PASS: 配置と配線に問題は見つかりませんでした。",
-                    "PASS: Scene placement and references are healthy.",
-                    "PASS: 배치와 참조 연결에 문제가 없습니다."));
-            else
-            {
-                for (var i = 0; i < issues.Count; i++)
-                    issues[i] = HealthIssueText(issues[i], language);
-                Debug.LogWarning("[QvInfoX Health Check] " + issues.Count + " "
-                    + LanguageText(language, "件の問題:", "issues:", "개 문제:") + "\n- "
-                    + string.Join("\n- ", issues) + "\n"
-                    + LanguageText(language,
-                        "Tools/Yakigura/QvInfoX/シーンに追加・更新 (Auto Setup) で修復できます。",
-                        "Run Tools/Yakigura/QvInfoX/シーンに追加・更新 (Auto Setup) to repair them.",
-                        "Tools/Yakigura/QvInfoX/シーンに追加・更新 (Auto Setup)을 실행하여 복구하세요."));
-            }
-        }
-
         public static List<string> CollectHealthIssues()
         {
             var issues = new List<string>();
@@ -1840,60 +1812,6 @@ namespace QvInfoX.Editor
             if (language == 1 && !string.IsNullOrEmpty(en)) return en;
             if (language == 2 && !string.IsNullOrEmpty(ko)) return ko;
             return ja;
-        }
-
-        private static string HealthIssueText(string issue, int language)
-        {
-            if (language != 1 && language != 2) return issue;
-            if (issue.StartsWith("WorldState: 1 本必要です"))
-                return LanguageText(language, issue, "Exactly one WorldState is required: " + issue,
-                    "WorldState는 하나만 필요합니다: " + issue);
-            if (issue.StartsWith("MasterTotals: 1 本必要です"))
-                return LanguageText(language, issue, "Exactly one MasterTotals is required: " + issue,
-                    "MasterTotals는 하나만 필요합니다: " + issue);
-            if (issue == "MasterTotals が無効です") return LanguageText(language, issue, "MasterTotals is disabled", "MasterTotals가 비활성화되었습니다");
-            if (issue.StartsWith("WorldState: ペン配列長 "))
-                return LanguageText(language, issue,
-                    issue.Replace("ペン配列長", "pen array length").Replace("がシーンのペン数", "does not match scene pen count").Replace("と一致しません", ""),
-                    issue.Replace("ペン配列長", "펜 배열 길이").Replace("がシーンのペン数", "가 씬의 펜 수").Replace("と一致しません", "와 다릅니다"));
-            if (issue == "WorldState が無効です") return LanguageText(language, issue, "WorldState is disabled", "WorldState가 비활성화되었습니다");
-            if (issue == "EventSystem がありません") return LanguageText(language, issue, "EventSystem is missing", "EventSystem이 없습니다");
-            if (issue == "PlayerPool がありません") return LanguageText(language, issue, "PlayerPool is missing", "PlayerPool이 없습니다");
-            if (issue == "PlayerPool が無効です") return LanguageText(language, issue, "PlayerPool is disabled", "PlayerPool이 비활성화되었습니다");
-            if (issue == "PlayerPool: CyanPlayerObjectPool がありません") return LanguageText(language, issue, "PlayerPool: CyanPlayerObjectPool is missing", "PlayerPool: CyanPlayerObjectPool이 없습니다");
-            if (issue == "PlayerPool: Assigner がありません") return LanguageText(language, issue, "PlayerPool: Assigner is missing", "PlayerPool: Assigner가 없습니다");
-            if (issue == "PlayerPool: PlayerSlots がありません") return LanguageText(language, issue, "PlayerPool: PlayerSlots are missing", "PlayerPool: PlayerSlots이 없습니다");
-            if (issue == "PlayerPool: Assigner の poolObjectsParent が違います") return LanguageText(language, issue, "PlayerPool: Assigner poolObjectsParent is incorrect", "PlayerPool: Assigner의 poolObjectsParent가 잘못되었습니다");
-            if (issue == "Monitor がありません") return LanguageText(language, issue, "Monitor is missing", "모니터가 없습니다");
-            if (issue == "Monitor が無効です") return LanguageText(language, issue, "Monitor is disabled", "모니터가 비활성화되었습니다");
-            if (issue == "Monitor: Manager がありません") return LanguageText(language, issue, "Monitor: Manager is missing", "모니터: Manager가 없습니다");
-            if (issue == "Monitor: Rigidbody の Kinematic/Gravity 設定が違います") return LanguageText(language, issue, "Monitor: Rigidbody Kinematic/Gravity settings are incorrect", "모니터: Rigidbody Kinematic/Gravity 설정이 잘못되었습니다");
-            if (issue == "Monitor: VRC_Pickup がありません、または無効です") return LanguageText(language, issue, "Monitor: VRC_Pickup is missing or disabled", "모니터: VRC_Pickup이 없거나 비활성화되었습니다");
-            if (issue == "Monitor: Root の持ち手 Collider がありません、または操作面と重なります") return LanguageText(language, issue, "Monitor: handle collider is missing or overlaps the controls", "모니터: 손잡이 콜라이더가 없거나 조작부와 겹칩니다");
-            if (issue == "Monitor: Canvas がありません") return LanguageText(language, issue, "Monitor: Canvas is missing", "모니터: Canvas가 없습니다");
-            if (issue == "Canvas: World Space 設定がありません") return LanguageText(language, issue, "Canvas: World Space mode is missing", "Canvas: World Space 설정이 없습니다");
-            if (issue == "Canvas: GraphicRaycaster がありません、または無効です") return LanguageText(language, issue, "Canvas: GraphicRaycaster is missing or disabled", "Canvas: GraphicRaycaster가 없거나 비활성화되었습니다");
-            if (issue == "Canvas: VRCUiShape または Collider がありません") return LanguageText(language, issue, "Canvas: VRCUiShape or Collider is missing", "Canvas: VRCUiShape 또는 Collider가 없습니다");
-            if (issue == "Manager: WorldState 参照が未配線です") return LanguageText(language, issue, "Manager: WorldState reference is missing", "Manager: WorldState 참조가 연결되지 않았습니다");
-            if (issue == "Manager: MasterTotals 参照が未配線です") return LanguageText(language, issue, "Manager: MasterTotals reference is missing", "Manager: MasterTotals 참조가 연결되지 않았습니다");
-            if (issue == "Manager: PlayerSlot 配列の長さがシーンと一致しません") return LanguageText(language, issue, "Manager: PlayerSlot array size does not match the scene", "Manager: PlayerSlot 배열 길이가 씬과 다릅니다");
-            if (issue == "Manager: PlayerSlot 参照が不足しています") return LanguageText(language, issue, "Manager: PlayerSlot reference is missing", "Manager: PlayerSlot 참조가 없습니다");
-            if (issue == "Manager: Scroll/Button/Toggle の参照が不足しています") return LanguageText(language, issue, "Manager: scroll or control references are missing", "Manager: 스크롤 또는 컨트롤 참조가 없습니다");
-            if (issue == "Monitor: タブボタンが不足しています") return LanguageText(language, issue, "Monitor: tab buttons are missing", "모니터: 탭 버튼이 없습니다");
-            if (issue == "Manager: Indicator 配列の長さがペン数と一致しません") return LanguageText(language, issue, "Manager: Indicator array size does not match the pen count", "Manager: Indicator 배열 길이가 펜 수와 다릅니다");
-            if (issue == "Manager: Indicator 参照が不足しています") return LanguageText(language, issue, "Manager: Indicator reference is missing", "Manager: Indicator 참조가 없습니다");
-            if (issue.StartsWith("PlayerPool: poolSize=")) return issue;
-            if (issue.StartsWith("PlayerPool: slot ")) return LanguageText(language, issue, issue.Replace("に QvInfoX_PlayerSlot がありません", " is missing QvInfoX_PlayerSlot"), issue.Replace("に QvInfoX_PlayerSlot がありません", "에 QvInfoX_PlayerSlot이 없습니다"));
-            if (issue.StartsWith("Canvas: Walkthrough 以外の Layer")) return LanguageText(language, issue, issue.Replace("Walkthrough 以外の Layer があります", "non-Walkthrough layer"), issue.Replace("Walkthrough 以外の Layer があります", "Walkthrough가 아닌 레이어"));
-            if (issue.StartsWith("Indicator:")) return LanguageText(language, issue, issue.Replace("の参照または生成プレビューが不正です", " has an invalid reference or preview").Replace("個です（期待値 1）", " instances (expected 1)"), issue.Replace("の参照または生成プレビューが不正です", "의 참조 또는 미리보기가 잘못되었습니다").Replace("個です（期待値 1）", "개가 있습니다 (필요한 수: 1)"));
-            if (issue.StartsWith("Manager:")) return LanguageText(language, issue, issue.Replace("は", " requires ").Replace("要素必要です", " elements").Replace("が未配線です", " is not connected"), issue.Replace("は", "에는 ").Replace("要素必要です", "개 요소가 필요합니다").Replace("が未配線です", "가 연결되지 않았습니다"));
-            if (issue.Contains("Udon 永続リスナーが未配線です")) return LanguageText(language, issue,
-                issue.Replace("Udon 永続リスナーが未配線です", "Udon persistent listener is missing"),
-                issue.Replace("Udon 永続リスナーが未配線です", "Udon 영구 리스너가 연결되지 않았습니다"));
-            if (issue.Contains("Udon イベント名が")) return LanguageText(language, issue,
-                issue.Replace("Udon イベント名が", "Udon event name is not ").Replace("ではありません", ""),
-                issue.Replace("Udon イベント名が", "Udon 이벤트 이름이 ").Replace("ではありません", "이 아닙니다"));
-            return issue; // Japanese fallback for a new, untranslated diagnostic.
         }
 
         private static Button EnsureButton(GameObject go, string label)

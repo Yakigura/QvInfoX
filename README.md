@@ -32,8 +32,6 @@ QvInfoX はサードパーティ製の **Cyan PlayerObjectPool** (`com.cyan.play
 3. Console で結果と警告を確認します。指示が出た場合は Unity のスクリプトコンパイル完了後に **シーンに追加・更新 (Auto Setup)** を再実行します。
 4. シーンを保存してワールドをビルドします。セットアップにより、ペン詳細用のワールド固定 `QvInfoX_WorldState`、ヘッダーと進捗用の小さな `QvInfoX_MasterTotals`、モニター、Cyan PlayerObjectPool、検出された各ペン用の Indicator がそれぞれ作成されます。
 
-新しいモニターは最初のスポーンの前方 2 m、スポーンの高さ + 0.9 m に配置されます。スポーンがない場合は (0, 0.9, 2) を使用し、再実行時は既存モニターの位置を保持します。
-
 **シーンから取り除く (Remove from Scene)** はシーンの導入記録を使用し、QvPalette など他のツールが参照する `QvInkPreview_*` オブジェクトを保持します。生成されたアセットは他のシーンから引き続き利用できます。
 
 既存の QvInfoX シーンではパッケージを更新し、**シーンに追加・更新 (Auto Setup)** を再実行して Console を確認し、保存して再ビルドします。これにより Master の集計が PlayerSlot から単一の WorldState に移行されます。再実行時には選択済みのモニター言語と Indicator の先端設定を保持します。

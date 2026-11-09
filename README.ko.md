@@ -32,8 +32,6 @@ QvInfoX는 타사 패키지인 **Cyan PlayerObjectPool** (`com.cyan.playerobject
 3. Console에서 설정 결과와 경고를 확인합니다. 안내가 나오면 Unity 스크립트 컴파일이 끝난 뒤 **シーンに追加・更新 (Auto Setup)**을 다시 실행합니다.
 4. 씬을 저장하고 월드를 빌드합니다. 자동 설정은 펜 상세 정보용으로 월드에 고정된 `QvInfoX_WorldState` 하나, 헤더와 진행률용 작은 `QvInfoX_MasterTotals` 하나, 모니터, Cyan PlayerObjectPool, 감지된 각 펜의 Indicator를 생성합니다.
 
-새 모니터는 첫 번째 스폰 지점 앞 2 m, 스폰 높이 + 0.9 m에 배치됩니다. 스폰 지점이 없으면 (0, 0.9, 2)를 사용하고 재실행 시 기존 모니터 위치를 유지합니다.
-
 **シーンから取り除く (Remove from Scene)**은 씬의 설치 기록을 사용하며 QvPalette 등 다른 도구에서 참조하는 `QvInkPreview_*` 오브젝트를 보존합니다. 생성된 에셋은 다른 씬에서 계속 사용할 수 있습니다.
 
 기존 QvInfoX 씬에서는 패키지를 갱신하고 **シーンに追加・更新 (Auto Setup)**을 다시 실행하여 Console을 확인한 다음 씬을 저장하고 다시 빌드합니다. 그러면 Master 집계가 PlayerSlot에서 단일 WorldState로 이전됩니다. 반복 실행해도 선택한 모니터 언어와 Indicator 끝 방향 설정은 유지됩니다.
