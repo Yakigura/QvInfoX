@@ -1,0 +1,6 @@
+{
+  "name": "Yakigura.QvSceneSetup.Runtime",
+  "rootNamespace": "Yakigura.QvSceneSetup",
+  "references": [],
+  "autoReferenced": true
+}

@@ -1,0 +1,29 @@
+{
+    "name": "Yakigura.QvInfoX.Editor",
+    "rootNamespace": "",
+    "references": [
+        "Yakigura.QvInfoX.Runtime",
+        "Yakigura.QvSceneSetup.Runtime",
+        "Yakigura.QvSceneSetup.Editor",
+        "UdonSharp.Runtime",
+        "UdonSharp.Editor",
+        "VRC.Udon",
+        "VRC.Udon.Editor",
+        "VRC.SDKBase.Editor.BuildPipeline",
+        "QvPen",
+        "Yakigura.QvInkPreview.Runtime",
+        "Yakigura.QvInkPreview.Editor",
+        "Cyan.PlayerObjectPool.UdonSharp"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,23 @@
+{
+  "name": "com.yakigura.qvinfox",
+  "displayName": "QvInfoX",
+  "version": "1.0.0",
+  "unity": "2022.3",
+  "description": "Non-invasive monitoring tools for QvPen: sync progress, ink load, and per-pen preview indicator.",
+  "author": {
+    "name": "やきたてぐらふてぃ",
+    "url": "https://github.com/Yakigura"
+  },
+  "vpmDependencies": {
+    "com.vrchat.worlds": "^3.9.0",
+    "com.vrchat.base": "^3.9.0",
+    "net.ureishi.qvpen": ">=3.3.0",
+    "com.yakigura.qvscenesetup": ">=1.0.0",
+    "com.yakigura.qvinkpreview": ">=1.0.0",
+    "com.cyan.playerobjectpool": "^1.1.2"
+  },
+  "documentationUrl": "https://github.com/Yakigura/QvInfoX#readme",
+  "changelogUrl": "https://github.com/Yakigura/QvInfoX/blob/main/Packages/com.yakigura.qvinfox/CHANGELOG.md",
+  "licensesUrl": "https://github.com/Yakigura/QvInfoX/blob/main/LICENSE",
+  "url": "https://github.com/Yakigura/QvInfoX/releases/download/1.0.0/com.yakigura.qvinfox-1.0.0.zip"
+}

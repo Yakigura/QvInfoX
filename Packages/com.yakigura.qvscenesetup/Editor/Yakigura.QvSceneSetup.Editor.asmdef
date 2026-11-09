@@ -1,0 +1,7 @@
+{
+  "name": "Yakigura.QvSceneSetup.Editor",
+  "rootNamespace": "Yakigura.QvSceneSetup.Editor",
+  "references": ["Yakigura.QvSceneSetup.Runtime"],
+  "includePlatforms": ["Editor"],
+  "autoReferenced": true
+}

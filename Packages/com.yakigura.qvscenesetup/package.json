@@ -1,0 +1,15 @@
+{
+  "name": "com.yakigura.qvscenesetup",
+  "displayName": "Qv Scene Setup",
+  "version": "1.0.0",
+  "unity": "2022.3",
+  "description": "Reversible per-scene installation records for Yakigura tools.",
+  "author": {
+    "name": "やきたてぐらふてぃ",
+    "url": "https://github.com/Yakigura"
+  },
+  "documentationUrl": "https://github.com/Yakigura/QvInfoX#readme",
+  "changelogUrl": "https://github.com/Yakigura/QvInfoX/blob/main/Packages/com.yakigura.qvscenesetup/CHANGELOG.md",
+  "licensesUrl": "https://github.com/Yakigura/QvInfoX/blob/main/LICENSE",
+  "url": "https://github.com/Yakigura/QvInfoX/releases/download/1.0.0/com.yakigura.qvscenesetup-1.0.0.zip"
+}
