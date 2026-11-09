@@ -52,7 +52,6 @@ The Indicator follows its pen and hides while drawing or erasing. If a pen model
 
 **ペン保持 / Hold pens / 펜 유지** is local to each user and works with Pickup v1.0. The original QvPen pens use v1.0 with AutoHold `Sometimes`; no Pickup migration is required. Only VR users can switch the setting at runtime: **ON requests AutoHold `Yes`; OFF requests `No` for every target**, including pens originally set to `Yes`. On desktop, holding is always enabled, QvHold never writes AutoHold, and the checkbox is disabled with **デスクトップは常にホールド / Desktop: always hold / 데스크톱: 항상 홀드** displayed. Original values are not saved or restored. Changes to a held pen wait until it is released; the checkbox follows the latest request and **手放すと反映 / Applies after release / 놓으면 적용** indicates the delay. QvHold never forces a Drop or changes drawing/Use events. No preference is saved between visits (no PlayerData).
 
-For developers, define `QVINFOX_DIAG` to enable diagnostic menus. To restore scene pens previously migrated to Pickup v1.1, use **Tools > Yakigura > QvInfoX > QvHold > ペンの Pickup を v1.0 に戻す（開いているシーン）**. It includes inactive pens in every loaded scene, leaves scenes unsaved, and groups the changes into one Undo. The **Assets/Scenes の全シーン** menu processes and saves changed scenes under `Assets/Scenes`, including scenes already open; saving an already open scene also saves its other unsaved edits. Temporarily opened scenes are closed afterward, so their changes cannot be undone after closing; use version control or a backup for those files. Both commands run without a confirmation dialog and log each pen and the totals to the Console. Only a Pickup on the same GameObject as `QvPen_Pen` is changed. Existing v1.0 pens are left alone. For v1.1 prefab instances the three property overrides are reverted to the source values; where a v1.1 value must be converted directly, the prefab AutoHold is preferred, or `Yes` becomes `Sometimes` and `No` stays `No` if no source exists. The original value before migration cannot always be inferred.
 
 On `QvInfoX/QvInfoX_Monitor/HoldController`, **入室時の初期状態 / Initial state on entry / 입장 시 초기 상태** (`initialState`, integer 0–2) offers:
 
@@ -79,9 +78,3 @@ The feature assumes fixed scene references and an always-active Controller. In V
 - **Pending totals after joining:** Master totals are shown only after a valid current-Master snapshot arrives. Use two clients to check late join and Master handoff.
 - **Pen count mismatch:** A `masterPenStrokes` array length can differ from the scene pen count. Pen details remain pending until a matching report arrives.
 - **Text or layout issue:** cycle all three languages and check long player names in a VRChat client. Editor validation alone cannot prove glyph rendering on Quest.
-
-## Release status
-
-QvInfoX 1.0.0 is the formal release and is intended for free distribution. The repository's `NEG-15-CLIENT-CHECKLIST.md` covers VR, Desktop, Quest, network transitions, and visual behavior. Quest testing remains limited; the VR devices used in the 2026-11-04 check were not recorded. Subsequent changes and installation through a VPM repository into a new project have not been verified.
-
-Developer note: Define QVINFOX_DIAG in Player Settings > Scripting Define Symbols for the active target to enable the Health Check, Validate Scene, and Pickup restoration diagnostic menus and QvInfoX diagnostic logs used by QvAllIn; debugLogEnabled and its diagnostic authority settings still apply.

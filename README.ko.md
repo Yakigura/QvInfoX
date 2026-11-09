@@ -52,7 +52,6 @@ Indicator는 펜을 따라가며 그리거나 지우는 동안 숨겨집니다. 
 
 **ペン保持 / Hold pens / 펜 유지**는 사용자별 로컬 기능이며 Pickup v1.0을 지원합니다. 원래 QvPen 펜은 AutoHold `Sometimes`인 v1.0을 사용하므로 Pickup 이전이 필요하지 않습니다. 런타임에서 설정을 바꿀 수 있는 사용자는 VR 사용자뿐입니다. **ON은 모든 대상에 AutoHold `Yes`, OFF는 `No`를 요청**하며 원래 `Yes`인 펜도 포함됩니다. 데스크톱에서는 항상 유지가 활성화되고 QvHold가 AutoHold에 쓰지 않으며 체크박스는 비활성화되고 **デスクトップは常にホールド / Desktop: always hold / 데스크톱: 항상 홀드**가 표시됩니다. 원래 값은 저장하거나 복원하지 않습니다. 잡고 있는 펜의 변경은 놓을 때까지 대기하며 체크박스는 최신 요청을 따르고 **手放すと反映 / Applies after release / 놓으면 적용**이 지연을 나타냅니다. 강제 Drop이나 그리기/Use 이벤트 변경은 없습니다. 방문 간 설정은 저장되지 않습니다(PlayerData 없음).
 
-개발자는 `QVINFOX_DIAG`를 정의하여 진단 메뉴를 활성화할 수 있습니다. 이전에 Pickup v1.1로 이전한 씬 펜을 복원하려면 **Tools > Yakigura > QvInfoX > QvHold > ペンの Pickup を v1.0 に戻す（開いているシーン）**을 사용하세요. 로드된 모든 씬의 비활성 펜도 포함하며 씬을 저장하지 않고 변경을 하나의 Undo로 묶습니다. **Assets/Scenes の全シーン** 메뉴는 이미 열린 씬을 포함하여 `Assets/Scenes` 아래의 변경된 씬을 처리하고 저장합니다. 이미 열린 씬을 저장하면 다른 미저장 편집도 함께 저장됩니다. 임시로 연 씬은 나중에 닫히므로 닫힌 뒤에는 해당 변경을 Undo할 수 없습니다. 버전 관리나 백업을 사용하세요. 두 명령 모두 확인 대화상자 없이 실행되며 각 펜과 합계를 Console에 기록합니다. `QvPen_Pen`과 같은 GameObject에 있는 Pickup만 변경하며 기존 v1.0 펜은 그대로 둡니다. v1.1 프리팹 인스턴스의 세 속성 오버라이드는 원본 값으로 되돌립니다. v1.1 값을 직접 변환해야 하면 프리팹 AutoHold를 우선하고 원본이 없으면 `Yes`를 `Sometimes`로 바꾸고 `No`는 유지합니다. 이전 전 원래 값을 항상 추정할 수는 없습니다.
 
 `QvInfoX/QvInfoX_Monitor/HoldController`의 **入室時の初期状態 / Initial state on entry / 입장 시 초기 상태** (`initialState`, 정수 0–2)는 다음을 제공합니다.
 
@@ -79,9 +78,3 @@ Indicator는 펜을 따라가며 그리거나 지우는 동안 숨겨집니다. 
 - **입장 후 합계 대기:** 유효한 현재 Master 스냅샷이 도착한 후에만 Master 합계를 표시합니다. 두 클라이언트로 중도 입장과 Master 인계를 확인하세요.
 - **펜 수 불일치:** `masterPenStrokes` 배열 길이가 씬 펜 수와 다를 수 있습니다. 일치하는 보고가 도착할 때까지 펜 상세 정보는 대기 상태입니다.
 - **문자 또는 레이아웃 문제:** VRChat 클라이언트에서 세 언어를 순환하며 긴 플레이어 이름을 확인하세요. Editor 검증만으로는 Quest의 글리프 표시를 증명할 수 없습니다.
-
-## 릴리스 상태
-
-QvInfoX 1.0.0은 정식 릴리스이며 무료 배포를 목적으로 합니다. 저장소의 `NEG-15-CLIENT-CHECKLIST.md`는 VR, 데스크톱, Quest, 네트워크 전환 및 시각적 동작을 다룹니다. Quest 테스트는 제한적이며 2026-11-04 확인에 사용한 VR 기기는 기록되지 않았습니다. 이후 변경 사항과 새 프로젝트에 VPM 저장소를 통한 설치는 검증되지 않았습니다.
-
-개발자 참고: 활성 대상의 Player Settings > Scripting Define Symbols에 QVINFOX_DIAG를 정의하면 Health Check, Validate Scene, Pickup 복원 진단 메뉴 및 QvAllIn에서 사용하는 QvInfoX 진단 로그를 활성화합니다. debugLogEnabled와 해당 진단 권한 설정은 계속 적용됩니다.
