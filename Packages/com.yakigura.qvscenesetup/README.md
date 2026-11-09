@@ -1,3 +1,5 @@
+[日本語](README.md) | [English](README.en.md) | [한국어](README.ko.md)
+
 # Qv Scene Setup
 
 QvFastSync と QvInfoX が使うシーン単位の導入記録です。記録 GameObject は `EditorOnly` タグでビルドから除外されます。

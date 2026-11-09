@@ -1,12 +1,14 @@
-# Changelog
+[日本語](CHANGELOG.md) | [English](CHANGELOG.en.md) | [한국어](CHANGELOG.ko.md)
+
+# 更新履歴
 
 ## 1.0.0
 
 2026-11-09
 
-- Released the QvPen synchronization monitor with per-player progress and an overall completion estimate.
-- Show per-pen details in the hierarchy order saved by Auto Setup.
-- QvHold switches holding in VR; desktop always holds. Pickup remains v1.0.
-- Move the panel with its handle; use Japanese, English, or Korean and see the package version on the Monitor.
-- Place new Monitors above the floor near the spawn, refresh automatically every 10 seconds by default, and organize the Tools menu around Add/Update and Remove.
-- Quest testing remains limited; checks on specific VR devices were not recorded.
+- プレイヤーごとの進捗と全体の完了予測を表示する QvPen 同期モニターをリリースしました。
+- 自動セットアップで保存されたヒエラルキー順に、ペンごとの詳細を表示します。
+- QvHold は VR で保持を切り替え、デスクトップでは常に保持します。Pickup は v1.0 のままです。
+- ハンドルでパネルを移動し、日本語・英語・韓国語を切り替え、モニターでパッケージのバージョンを確認できます。
+- 新規モニターをスポーン付近の床上に配置し、既定で10秒ごとに自動更新します。Tools メニューを追加・更新と取り除きを中心に整理しました。
+- Quest の検証は限定的で、使用した VR 機器の記録はありません。
