@@ -423,7 +423,14 @@ namespace Yakigura.QvSceneSetup.Editor
                         var args = new object[parameters.Length];
                         args[0] = proxy;
                         for (var i = 1; i < args.Length; ++i) args[i] = parameters[i].DefaultValue;
-                        method.Invoke(null, args);
+                        try { method.Invoke(null, args); }
+                        catch (Exception e)
+                        {
+                            // 新規プロジェクトでは UdonSharp のコンパイル完了前に呼ばれ、同期が失敗することがある。
+                            // 値はプロキシ側に残り、コンパイル後・ビルド時に UdonSharp が同期するため、導入は中止しない。
+                            UnityEngine.Debug.LogWarning("[QvSceneSetup] '" + proxy.name + "' の Udon への即時同期をスキップしました: "
+                                + (e.InnerException ?? e).Message);
+                        }
                     }
         }
     }
